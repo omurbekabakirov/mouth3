@@ -9,3 +9,14 @@ BAN_USER_TEXT = "User {name}\n"\
                      "You can not jet down curse words\n"\
                      "In third time you will be banned\n"\
                       "Count:{count}"
+
+CHECK_BAN_USER_TEXT="\n"\
+                     "You are fine you haven't wrote any  bad messages\n\n"\
+                     "But remember:"\
+                     "You can not jet down curse words\n"\
+                     "In third time you will be banned\n"
+CHECK_BAN_USER_TEXT_NEGATIVE="YOU ARE IN BIG TROUBLE \n\n"\
+                     "REMEMBER:"\
+                     "You can not jet down curse words\n"\
+                     "In third time you will be banned\n"
+
