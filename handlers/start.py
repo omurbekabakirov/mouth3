@@ -1,8 +1,10 @@
 from aiogram import types, Dispatcher
-from config import bot
+from config import bot,MEDIA_DESTINATION
 from database.DB import Database
 from KEYBOARDS import inline_button
-
+from const import (
+START_MENU
+)
 
 async def start_button(message: types.Message):
     datab = Database()
@@ -14,11 +16,16 @@ async def start_button(message: types.Message):
     )
 
     print(message)
-    await bot.send_message(
-        chat_id=message.from_user.id,
-        text=f'Hi {message.from_user.first_name}',
-        reply_markup=await inline_button.start_keyboard()
-    )
+
+    with open( MEDIA_DESTINATION + "bot-animation.gif","rb") as animation:
+        await bot.send_animation(
+            chat_id=message.chat.id,
+            animation=animation,
+            caption=START_MENU.format(
+                name=message.from_user.first_name
+            ),
+            reply_markup=await inline_button.start_keyboard()
+        )
 
 
 def register_start_handler(dp: Dispatcher):

@@ -3,6 +3,7 @@ from config import dp
 from handlers import (
     start,
     questionnaire,
+    chat_actions,
 )
 from database.DB import Database
 
@@ -10,9 +11,11 @@ from database.DB import Database
 def on_startup():
     datab = Database()
     datab.sql_create_table()
+
+
 start.register_start_handler(dp=dp)
 questionnaire.register_questionnaire_handlers(dp=dp)
-
+chat_actions.register_chat_actions_handlers(dp=dp)
 
 if __name__ == '__main__':
     executor.start_polling(
