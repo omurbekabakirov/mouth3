@@ -9,7 +9,8 @@ class Database:
         if self.connection:
             print("database connected successfully")
         self.connection.execute(sql_queries.CREATE_USER_TABLE_QUERY)
-        self.connection.execute(sql_queries.CREATE_BAN_USER_TABLE_QUERY )
+        self.connection.execute(sql_queries.CREATE_BAN_USER_TABLE_QUERY)
+        self.connection.execute(sql_queries.CREATE_PROFILE_TABLE_QUERY)
 
         self.connection.commit()
 
@@ -42,5 +43,11 @@ class Database:
     def sql_update_ban_count(self,tg_id):
         self.cursor.execute(sql_queries.UPDATE_BAN_USER_COUNT_QUERY,
                             (tg_id,)
+                            )
+        self.connection.commit()
+
+    def sql_insert_profile(self,tg_id,nickname,bio,age,zodiac_sign,job,gender,photo):
+        self.cursor.execute(sql_queries.INSERT_PROFILE_QUERY,
+                            (None,tg_id,nickname,bio,age,zodiac_sign,job,gender,photo)
                             )
         self.connection.commit()

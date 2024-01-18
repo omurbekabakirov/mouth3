@@ -15,8 +15,14 @@ CHECK_BAN_USER_TEXT="\n"\
                      "But remember:"\
                      "You can not jet down curse words\n"\
                      "In third time you will be banned\n"
-CHECK_BAN_USER_TEXT_NEGATIVE="YOU ARE IN BIG TROUBLE \n\n"\
+CHECK_BAN_USER_TEXT_NEGATIVE = "YOU ARE IN BIG TROUBLE \n\n"\
                      "REMEMBER:"\
                      "You can not jet down curse words\n"\
                      "In third time you will be banned\n"
 
+PROFILE_TEXT = 'Nickname: {nickname}\n'\
+                'Bio: {bio}\n'\
+                'Age: {age}\n'\
+                'Zodiac_sign: {zodiac_sign}\n'\
+                'Job: {job}\n'\
+                'Gender: {gender}'
