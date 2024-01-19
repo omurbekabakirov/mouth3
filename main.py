@@ -16,8 +16,9 @@ def on_startup():
 
 start.register_start_handler(dp=dp)
 questionnaire.register_questionnaire_handlers(dp=dp)
-chat_actions.register_chat_actions_handlers(dp=dp)
 registration.register_registration_handler(dp=dp)
+chat_actions.register_chat_actions_handlers(dp=dp)
+
 
 if __name__ == '__main__':
     executor.start_polling(

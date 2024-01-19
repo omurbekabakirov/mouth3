@@ -119,7 +119,7 @@ async def load_job(message: types.Message, state: FSMContext):
 
 genders = ["male", "female"]
 async def load_gender(message: types.Message, state: FSMContext):
-    if message.text in genders:
+    if message.text.lower() in genders:
         async with state.proxy() as data:
             data["gender"] = message.text
             print(data)
@@ -149,24 +149,24 @@ async def load_photo(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         datab.sql_insert_profile(
             tg_id=message.from_user.id,
-            nickname=data['nickname'],
+            nickname=data['name'],
             bio=data['bio'],
             age=data['age'],
-            zodiac_sign=data['zodiac_sign'],
+            zodiac_sign=data['zodiac sign'],
             job=data['job'],
             gender=data['gender'],
             photo=path.name
         )
 
-    with open(path.name, "rb") as animation:
-        await bot.send_animation(
+    with open(path.name, "rb") as photo:
+        await bot.send_photo(
             chat_id=message.chat.id,
-            animation=animation,
+            photo=photo,
             caption=PROFILE_TEXT.format(
-                nickname=data['nickname'],
+                nickname=data['name'],
                 bio=data['bio'],
                 age=data['age'],
-                zodiac_sign=data['zodiac_sign'],
+                zodiac_sign=data['zodiac sign'],
                 job=data['job'],
                 gender=data['gender'],
             ),
@@ -179,7 +179,7 @@ async def load_photo(message: types.Message, state: FSMContext):
 
 
 def register_registration_handler(dp: Dispatcher):
-    dp.register_message_handler(
+    dp.register_callback_query_handler(
         register,
         lambda call: call.data == "registration"
     )
