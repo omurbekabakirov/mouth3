@@ -1,9 +1,6 @@
-../.idea
-.venv/.env
+.idea
+.env
 .venv
 __pycache__/
 handlers/__pycache__/
-db.sqlite3
-database/__pycache__/
-KEYBOARDS/__pycache__/
 media
