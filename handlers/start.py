@@ -17,7 +17,7 @@ async def start_button(message: types.Message):
 
     print(message)
 
-    with open( MEDIA_DESTINATION + "bot-animation.gif","rb") as animation:
+    with open(MEDIA_DESTINATION + "bot-animation.gif","rb") as animation:
         await bot.send_animation(
             chat_id=message.chat.id,
             animation=animation,

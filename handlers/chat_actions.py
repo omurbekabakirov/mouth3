@@ -4,7 +4,10 @@ from config import bot, MEDIA_DESTINATION, GROUP_ID
 from database.DB import Database
 from KEYBOARDS import inline_button
 from const import (
-    START_MENU,BAN_USER_TEXT,CHECK_BAN_USER_TEXT,CHECK_BAN_USER_TEXT_NEGATIVE
+    START_MENU,
+    BAN_USER_TEXT,
+    CHECK_BAN_USER_TEXT,
+    CHECK_BAN_USER_TEXT_NEGATIVE
 )
 from profanity_check import predict_prob
 
