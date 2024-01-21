@@ -66,7 +66,7 @@ class Database:
             'photo': row[8]
         }
         return self.cursor.execute(
-            sql_queries.SELECT_PROFILE_QUERY
+            sql_queries.SELECT_PROFILE_QUERY,
             (tg_id,)
         ).fetchone()
 

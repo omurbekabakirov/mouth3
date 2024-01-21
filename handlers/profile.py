@@ -23,10 +23,12 @@ async def my_profile_call(call: types.CallbackQuery):
                 chat_id=call.from_user.id,
                 photo=photo,
                 caption=PROFILE_TEXT.format(
-                    nickname=profile['nickname'],
+                    nickname=profile['name'],
                     bio=profile['bio'],
                     age=profile['age'],
-                    sign=profile['sign'],
+                    zodiac_sign=profile['zodiac sign'],
+                    job=profile['job'],
+                    gender=profile['gender']
                 ),
                 reply_markup=await inline_button.my_profile_keyboard()
             )
