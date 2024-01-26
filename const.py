@@ -30,3 +30,9 @@ NOT_REGISTERED_TEXT = ('Sorry {name} '
                        'You are not registered\n'
                        'Please register \n'
                        'and then try again')
+REFERENCE_MENU_TEXT = "Welcome to the Referral Menu, {user}\n" \
+                      "U can earn money by sharing " \
+                      "link to invite other people (friends ext)\n" \
+                      "U can press button to generate link\n" \
+                      "Balance: {balance}\n" \
+                      "Total-Referrals: {total}"
