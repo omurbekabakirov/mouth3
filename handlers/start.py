@@ -4,9 +4,12 @@ from config import bot,MEDIA_DESTINATION
 from database.DB import Database
 from KEYBOARDS import inline_button
 from const import (
-START_MENU
+    START_MENU
 )
+from scraping.news_scraper import NewsScraper
 import sqlite3
+
+
 async def start_button(message: types.Message):
     datab = Database()
     datab.sql_insert_user(
@@ -18,7 +21,6 @@ async def start_button(message: types.Message):
 
     print(message.get_full_command())
     command = message.get_full_command()
-
 
     if command[1] != "":
         link = await _create_link('start', payload=command[1])
@@ -55,5 +57,16 @@ async def start_button(message: types.Message):
         )
 
 
+async def latest_news(call: types.CallbackQuery):
+    scraper = NewsScraper()
+    data = scraper.parse_data()
+    for link in data[:5]:
+        await bot.send_message(
+            chat_id=call.from_user.id,
+            text=scraper.START_URL + link
+        )
+
+
 def register_start_handler(dp: Dispatcher):
     dp.register_message_handler(start_button, commands=['start'])
+    dp.register_callback_query_handler(latest_news, lambda call: call.data == 'latest_news')
