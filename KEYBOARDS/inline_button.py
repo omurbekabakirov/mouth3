@@ -24,7 +24,7 @@ async def start_keyboard():
         callback_data="reference_menu"
     )
     latest_news_button = InlineKeyboardButton(
-        "Latest News ",
+        "Latest KG News ",
         callback_data="latest_news"
     )
     markup.add(questionnaire_button,registration_button,)

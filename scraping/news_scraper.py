@@ -4,7 +4,7 @@ from parsel.selector import Selector
 
 class NewsScraper:
     START_URL = "https://knews.kg"
-    URL = "https://knews.kg/wp-includes/js/jquery/jquery.js?ver=3.7.1"
+    URL = "https://knews.kg/"
     HEADERS = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:122.0) Gecko/20100101 Firefox/122.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',

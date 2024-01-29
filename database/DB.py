@@ -14,6 +14,7 @@ class Database:
         self.connection.execute(sql_queries.CREATE_LIKE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_DISLIKE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_REFERRAL_TABLE_QUERY)
+        self.connection.execute(sql_queries.CREATE_KG_NEWS_TABLE_QUERY)
         try:
             self.connection.execute(sql_queries.ALTER_USER_TABLE)
             self.connection.execute(sql_queries.ALTER_USER_V2_TABLE)
@@ -138,6 +139,7 @@ class Database:
         ).fetchone()
 
     def sql_select_user_by_link(self, link):
+
         self.cursor.row_factory = lambda cursor, row: {
             'id': row[0],
             'telegram_id': row[1],
@@ -151,6 +153,7 @@ class Database:
             sql_queries.SELECT_USER_BY_LINK_QUERY,
             (link,)
         ).fetchone()
+
     def sql_select_my_refs(self, tg_id):
         self.cursor.row_factory = lambda cursor, row: {
             'id': row[0],
@@ -174,5 +177,12 @@ class Database:
         self.cursor.execute(
             sql_queries.UPDATE_USER_BALANCE_QUERY,
             (owner,)
+        )
+        self.connection.commit()
+
+    def sql_insert_kg_news(self,link):
+        self.cursor.execute(
+            sql_queries.INSERT_KG_NEWS_QUERY,
+            (None, link)
         )
         self.connection.commit()
