@@ -41,7 +41,6 @@ async def car_type_questionnaire(call: types.CallbackQuery):
 
 async def bmw_answer(call: types.CallbackQuery):
 
-
     await bot.send_message(
         chat_id=call.from_user.id,
         text="Good,but mercedes is better",
@@ -56,7 +55,6 @@ async def mercedes_answer(call: types.CallbackQuery):
         text="That's  my boy",
         reply_markup=await inline_button.third_question()
     )
-
 
 
 async def fruit_type_questionnaire(call: types.CallbackQuery):
@@ -85,25 +83,14 @@ async def banana_answer(call: types.CallbackQuery):
         eply_markup=await inline_button.questionnaire_third_answers()
     )
 
+
 def register_questionnaire_handlers(dp: Dispatcher):
-    dp.register_callback_query_handler(questionnaire,
-                                        lambda call: call.data == "start_questionnaire")
-    dp.register_callback_query_handler(university_answers,
-                                        lambda call: call.data == "university")
-    dp.register_callback_query_handler(college_answers,
-                                        lambda call: call.data == "college")
-    dp.register_callback_query_handler(car_type_questionnaire,
-                                        lambda call: call.data == "next_question")
-    dp.register_callback_query_handler(bmw_answer,
-                                        lambda call: call.data == "bmw")
-    dp.register_callback_query_handler(mercedes_answer,
-                                        lambda call: call.data == "mercedes")
-    dp.register_callback_query_handler(fruit_type_questionnaire,
-                                       lambda call: call.data == "last_question")
-    dp.register_callback_query_handler(lemon_answer,
-                                       lambda call: call.data == "lemon")
-    dp.register_callback_query_handler(banana_answer,
-                                       lambda call: call.data == "banana")
-
-
-
+    dp.register_callback_query_handler(questionnaire, lambda call: call.data == "start_questionnaire")
+    dp.register_callback_query_handler(university_answers, lambda call: call.data == "university")
+    dp.register_callback_query_handler(college_answers, lambda call: call.data == "college")
+    dp.register_callback_query_handler(car_type_questionnaire, lambda call: call.data == "next_question")
+    dp.register_callback_query_handler(bmw_answer, lambda call: call.data == "bmw")
+    dp.register_callback_query_handler(mercedes_answer, lambda call: call.data == "mercedes")
+    dp.register_callback_query_handler(fruit_type_questionnaire, lambda call: call.data == "last_question")
+    dp.register_callback_query_handler(lemon_answer, lambda call: call.data == "lemon")
+    dp.register_callback_query_handler(banana_answer, lambda call: call.data == "banana")

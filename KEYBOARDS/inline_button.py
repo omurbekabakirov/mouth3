@@ -27,11 +27,12 @@ async def start_keyboard():
         "Latest KG News ",
         callback_data="latest_news"
     )
-    markup.add(questionnaire_button,registration_button,)
-    markup.add(my_profile_button,latest_news_button)
-    markup.add(view_profiles_button,reference_button)
+    markup.add(questionnaire_button, registration_button,)
+    markup.add(my_profile_button, latest_news_button)
+    markup.add(view_profiles_button, reference_button)
 
     return markup
+
 
 async def like_dislike_keyboard(owner):
     markup = InlineKeyboardMarkup()
@@ -46,6 +47,8 @@ async def like_dislike_keyboard(owner):
     markup.add(like_button)
     markup.add(dislike_button)
     return markup
+
+
 async def my_profile_keyboard():
     markup = InlineKeyboardMarkup()
     like_button = InlineKeyboardButton(
@@ -59,6 +62,7 @@ async def my_profile_keyboard():
     markup.add(like_button)
     markup.add(dislike_button)
     return markup
+
 
 async def questionnaire_first_answers():
     markup = InlineKeyboardMarkup()
@@ -98,6 +102,7 @@ async def questionnaire_second_answers():
     markup.add(mercedes_button)
     return markup
 
+
 async def third_question():
     markup = InlineKeyboardMarkup()
     third_question_button = InlineKeyboardButton(
@@ -106,6 +111,8 @@ async def third_question():
     )
     markup.add(third_question_button)
     return markup
+
+
 async def questionnaire_third_answers():
     markup = InlineKeyboardMarkup()
     lemon_button = InlineKeyboardButton(
@@ -134,5 +141,3 @@ async def referral_keyboard():
     markup.add(generate_button)
     markup.add(my_refs)
     return markup
-
-

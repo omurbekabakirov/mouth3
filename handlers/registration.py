@@ -1,12 +1,10 @@
-import sqlite3
 
 from aiogram import types, Dispatcher
-from config import bot,MEDIA_DESTINATION
+from config import bot, MEDIA_DESTINATION
 from database.DB import Database
 from KEYBOARDS import inline_button
 from const import (
-START_MENU,
-PROFILE_TEXT
+    PROFILE_TEXT
 )
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -29,6 +27,7 @@ async def register(call: types.CallbackQuery):
     )
     await RegistrationStates.nickname.set()
 
+
 async def load_name(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data["name"] = message.text
@@ -38,7 +37,6 @@ async def load_name(message: types.Message, state: FSMContext):
         text="Send me your biography, please!"
     )
     await RegistrationStates.next()
-
 
 
 async def load_bio(message: types.Message, state: FSMContext):
@@ -65,7 +63,6 @@ async def load_age(message: types.Message, state: FSMContext):
         await state.finish()
         return
 
-
     async with state.proxy() as data:
         data["age"] = message.text
         print(data)
@@ -87,7 +84,10 @@ async def load_age(message: types.Message, state: FSMContext):
     )
     await RegistrationStates.next()
 
-zodiac_signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo','Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius','Pisces']
+zodiac_signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn',
+                'Aquarius', 'Pisces']
+
+
 async def load_zodiac_sign(message: types.Message, state: FSMContext):
     if message.text.capitalize() in zodiac_signs:
         async with state.proxy() as data:
@@ -107,6 +107,7 @@ async def load_zodiac_sign(message: types.Message, state: FSMContext):
         )
         await state.finish()
 
+
 async def load_job(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data["job"] = message.text
@@ -118,6 +119,8 @@ async def load_job(message: types.Message, state: FSMContext):
     await RegistrationStates.next()
 
 genders = ["male", "female"]
+
+
 async def load_gender(message: types.Message, state: FSMContext):
     if message.text.lower() in genders:
         async with state.proxy() as data:

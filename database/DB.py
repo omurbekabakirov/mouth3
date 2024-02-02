@@ -1,10 +1,12 @@
 import sqlite3
 from database import sql_queries
 
+
 class Database:
     def __init__(self):
         self.connection = sqlite3.connect('db.sqlite3')
         self.cursor = self.connection.cursor()
+
     def sql_create_table(self):
         if self.connection:
             print("database connected successfully")
@@ -22,8 +24,6 @@ class Database:
             pass
         self.connection.commit()
 
-
-
     def sql_insert_user(self, tg_id, username, first_name, last_name):
         self.cursor.execute(
             sql_queries.INSERT_USER_QUERY,
@@ -31,15 +31,13 @@ class Database:
         )
         self.connection.commit()
 
-
-    def sql_insert_ban_user(self,tg_id):
+    def sql_insert_ban_user(self, tg_id):
         self.cursor.execute(sql_queries.INSERT_BAN_USER_QUERY,
-                            (None,tg_id,1)
+                            (None, tg_id, 1)
                             )
         self.connection.commit()
 
-
-    def sql_select_ban_users(self,tg_id):
+    def sql_select_ban_users(self, tg_id):
         self.cursor.row_factory = lambda cursor, row: {
             'id': row[0],
             'telegram_id': row[1],
@@ -50,19 +48,19 @@ class Database:
             (tg_id,)
         ).fetchone()
 
-    def sql_update_ban_count(self,tg_id):
+    def sql_update_ban_count(self, tg_id):
         self.cursor.execute(sql_queries.UPDATE_BAN_USER_COUNT_QUERY,
                             (tg_id,)
                             )
         self.connection.commit()
 
-    def sql_insert_profile(self,tg_id,nickname,bio,age,zodiac_sign,job,gender,photo):
+    def sql_insert_profile(self, tg_id, nickname, bio, age, zodiac_sign, job, gender, photo):
         self.cursor.execute(sql_queries.INSERT_PROFILE_QUERY,
-                            (None,tg_id,nickname,bio,age,zodiac_sign,job,gender,photo)
+                            (None, tg_id, nickname, bio, age, zodiac_sign, job, gender, photo)
                             )
         self.connection.commit()
 
-    def sql_select_profile(self,tg_id):
+    def sql_select_profile(self, tg_id):
         self.cursor.row_factory = lambda cursor, row: {
             'id': row[0],
             'telegram_id': row[1],
@@ -79,19 +77,19 @@ class Database:
             (tg_id,)
         ).fetchone()
 
-
-    def sql_insert_like(self,owner,liker):
+    def sql_insert_like(self, owner, liker):
         self.cursor.execute(sql_queries.INSERT_LIKE_QUERY,
-                            (None,owner,liker)
-                            )
-        self.connection.commit()
-    def sql_insert_dislike(self,owner,disliker):
-        self.cursor.execute(sql_queries.INSERT_DISLIKE_QUERY,
-                            (None,owner,disliker)
+                            (None, owner, liker)
                             )
         self.connection.commit()
 
-    def sql_select_all_profiles(self,owner):
+    def sql_insert_dislike(self, owner, disliker):
+        self.cursor.execute(sql_queries.INSERT_DISLIKE_QUERY,
+                            (None, owner, disliker)
+                            )
+        self.connection.commit()
+
+    def sql_select_all_profiles(self, owner):
         self.cursor.row_factory = lambda cursor, row: {
             'id': row[0],
             'telegram_id': row[1],
@@ -104,7 +102,7 @@ class Database:
             'photo': row[8]
         }
         return self.cursor.execute(
-            sql_queries.FILTER_LEFT_JOIN_PROFILE_QUERY,(owner,owner)).fetchall()
+            sql_queries.FILTER_LEFT_JOIN_PROFILE_QUERY, (owner, owner)).fetchall()
 
     def sql_select_user(self, tg_id):
         self.cursor.row_factory = lambda cursor, row: {
@@ -139,7 +137,6 @@ class Database:
         ).fetchone()
 
     def sql_select_user_by_link(self, link):
-
         self.cursor.row_factory = lambda cursor, row: {
             'id': row[0],
             'telegram_id': row[1],
@@ -166,10 +163,10 @@ class Database:
             (tg_id,)
         ).fetchall()
 
-    def sql_insert_referral(self, owner,username, referral):
+    def sql_insert_referral(self, owner, username, referral):
         self.cursor.execute(
             sql_queries.INSERT_REFERRAL_QUERY,
-            (None, owner,username, referral)
+            (None, owner, username, referral)
         )
         self.connection.commit()
 
@@ -180,7 +177,7 @@ class Database:
         )
         self.connection.commit()
 
-    def sql_insert_kg_news(self,link):
+    def sql_insert_kg_news(self, link):
         self.cursor.execute(
             sql_queries.INSERT_KG_NEWS_QUERY,
             (None, link)

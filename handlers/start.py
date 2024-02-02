@@ -1,6 +1,6 @@
 from aiogram import types, Dispatcher
-from aiogram.utils.deep_linking import _create_link
-from config import bot,MEDIA_DESTINATION
+from aiogram.utils.deep_linking import (_create_link)
+from config import bot, MEDIA_DESTINATION
 from database.DB import Database
 from KEYBOARDS import inline_button
 from const import (
@@ -46,7 +46,7 @@ async def start_button(message: types.Message):
         except sqlite3.IntegrityError:
             pass
 
-    with open(MEDIA_DESTINATION + "bot-animation.gif","rb") as animation:
+    with open(MEDIA_DESTINATION + "bot-animation.gif", "rb") as animation:
         await bot.send_animation(
             chat_id=message.chat.id,
             animation=animation,

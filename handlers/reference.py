@@ -44,6 +44,8 @@ async def generate_link(call: types.CallbackQuery):
             chat_id=call.from_user.id,
             text=f"Here is your old link: {user['link']}",
         )
+
+
 async def my_refs(call: types.CallbackQuery):
     datab = Database()
     my_users = datab.sql_select_my_refs(call.from_user.id)
@@ -54,6 +56,7 @@ async def my_refs(call: types.CallbackQuery):
         chat_id=call.from_user.id,
         text=list_ref
     )
+
 
 def register_reference_handlers(dp: Dispatcher):
     dp.register_callback_query_handler(

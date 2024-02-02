@@ -1,32 +1,33 @@
 import datetime
 from aiogram import types, Dispatcher
-from config import bot, MEDIA_DESTINATION, GROUP_ID
+from config import bot, GROUP_ID
 from database.DB import Database
-from KEYBOARDS import inline_button
 from const import (
-    START_MENU,
     BAN_USER_TEXT,
     CHECK_BAN_USER_TEXT,
     CHECK_BAN_USER_TEXT_NEGATIVE
 )
 from profanity_check import predict_prob
 
+
 async def check_ban_list(message: types. Message):
     datab = Database()
     potential = datab.sql_select_ban_users(
-    tg_id=message.from_user.id
+        tg_id=message.from_user.id
     )
     if potential:
-        await bot. send_message (
-        chat_id=message.chat.id,
-        text=CHECK_BAN_USER_TEXT_NEGATIVE
+        await bot. send_message(
+            chat_id=message.chat.id,
+            text=CHECK_BAN_USER_TEXT_NEGATIVE
         )
 
     else:
-        await bot. send_message (
-        chat_id=message.chat.id,
-        text=CHECK_BAN_USER_TEXT
+        await bot. send_message(
+            chat_id=message.chat.id,
+            text=CHECK_BAN_USER_TEXT
         )
+
+
 async def chat_messages(message: types.Message):
     datab = Database()
     if message.chat.id == int(GROUP_ID):
@@ -66,9 +67,6 @@ async def chat_messages(message: types.Message):
             print(ban_words_predict_prob)
 
 
-
-
 def register_chat_actions_handlers(dp: Dispatcher):
     dp.register_message_handler(check_ban_list, commands=['ban_list'])
     dp.register_message_handler(chat_messages)
-

@@ -1,9 +1,9 @@
 import requests
-from parsel.selector import Selector
+from parsel import Selector
 
 
 class NewsScraper:
-    START_URL = "https://knews.kg"
+    START_URL = "https://knews.kgm"
     URL = "https://knews.kg/"
     HEADERS = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:122.0) Gecko/20100101 Firefox/122.0',
@@ -15,13 +15,16 @@ class NewsScraper:
 
     def parse_data(self):
         text = requests.get(url=self.URL, headers=self.HEADERS).text
+
         tree = Selector(text=text)
-        links = tree.xpath(self.LINK_XPATH).extract()
+        links = tree.xpath(self.LINK_XPATH).getall()
+
         for link in links:
             print(self.START_URL + link)
+
         return links
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     scraper = NewsScraper()
     scraper.parse_data()
