@@ -6,7 +6,7 @@ from KEYBOARDS import inline_button
 from const import (
     START_MENU
 )
-from scraping.news_scraper import NewsScraper
+#from scraping.news_scraper import NewsScraper
 import sqlite3
 
 
@@ -57,20 +57,20 @@ async def start_button(message: types.Message):
         )
 
 
-async def latest_kg_news(call: types.CallbackQuery):
-    scraper = NewsScraper()
-    data = scraper.parse_data()
-    datab = Database()
-    for link in data[:5]:
-        await bot.send_message(
-            chat_id=call.from_user.id,
-            text=scraper.START_URL + link
-        )
-        datab.sql_insert_kg_news(
-            link=scraper.START_URL + link
-        )
+# async def latest_kg_news(call: types.CallbackQuery):
+#     scraper = NewsScraper()
+#     data = scraper.parse_data()
+#     datab = Database()
+#     for link in data[:5]:
+#         await bot.send_message(
+#             chat_id=call.from_user.id,
+#             text=scraper.START_URL + link
+#         )
+#         datab.sql_insert_kg_news(
+#             link=scraper.START_URL + link
+#         )
 
 
 def register_start_handler(dp: Dispatcher):
     dp.register_message_handler(start_button, commands=['start'])
-    dp.register_callback_query_handler(latest_kg_news, lambda call: call.data == 'latest_news')
+    # dp.register_callback_query_handler(latest_kg_news, lambda call: call.data == 'latest_news')
